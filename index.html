@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎈 Balloon Bachao Game 🎈</title>
 </head>
   <body style="background:white; text-align:center; font-family:'Segoe Script', cursive; margin:0; padding:8px 0; position:relative; overflow-x:hidden">
 
@@ -10,15 +11,15 @@
     <div style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%) rotate(-30deg); font-size:40px; color:rgba(255,105,180,0.08); font-weight:bold; pointer-events:none; z-index:0; white-space:nowrap">Balloon Bachao Balloon Bachao</div>
 
     <!-- BACKGROUND BALLOONS -->
-    <div class="bg-balloon" style="background:#FF0000; left:10%">ðŸŽˆ</div>
-    <div class="bg-balloon" style="background:#0000FF; left:25%">ðŸŽˆ</div>
-    <div class="bg-balloon" style="background:#FFFF00; left:40%">ðŸŽˆ</div>
-    <div class="bg-balloon" style="background:#00FF00; left:55%">ðŸŽˆ</div>
-    <div class="bg-balloon" style="background:#FF00FF; left:70%">ðŸŽˆ</div>
-    <div class="bg-balloon" style="background:#FFA500; left:85%">ðŸŽˆ</div>
+    <div class="bg-balloon" style="background:#FF0000; left:10%">🎈</div>
+    <div class="bg-balloon" style="background:#0000FF; left:25%">🎈</div>
+    <div class="bg-balloon" style="background:#FFFF00; left:40%">🎈</div>
+    <div class="bg-balloon" style="background:#00FF00; left:55%">🎈</div>
+    <div class="bg-balloon" style="background:#FF00FF; left:70%">🎈</div>
+    <div class="bg-balloon" style="background:#FFA500; left:85%">🎈</div>
 
     <!-- TITLE -->
-    <h1 style="margin:5px 0; font-size:24px; color:#FF69B4; font-style:italic; font-weight:bold; position:relative; z-index:1">ðŸŽˆ Balloon Bachao Game ðŸŽˆ</h1>
+    <h1 style="margin:5px 0; font-size:24px; color:#FF69B4; font-style:italic; font-weight:bold; position:relative; z-index:1">🎈 Balloon Bachao Game 🎈</h1>
     <h2 style="margin:3px 0; font-size:18px; font-style:italic; color:#8A2BE2; font-weight:bold; position:relative; z-index:1">Welcome election</h2>
     <p style="font-size:15px; margin:3px 0; font-style:italic; color:#555; position:relative; z-index:1">Big election 2026- Coin earn Karo</p>
 
@@ -32,9 +33,183 @@
 
     <!-- GAME BOX -->
     <div style="position:relative; display:flex; justify-content:center; align-items:center; margin:10px 0; z-index:1">
-      <div style="position:absolute; left:8px; font-size:32px; top:15px; animation:float 2s infinite">ðŸŽˆ</div>
-      <div style="position:absolute; left:10px; font-size:30px; top:90px; animation:float 2.3s infinite">ðŸŽˆ</div>
-      <div style="position:absolute; left:8px; font-size:28px; top:160px; animation:float 2.1s infinite">ðŸŽˆ</div>
+      <div style="position:absolute; left:8px; font-size:32px; top:15px; animation:float 2s infinite">🎈</div>
+      <div style="position:absolute; left:10px; font-size:30px; top:90px; animation:float 2.3s infinite">🎈</div>
+      <div style="position:absolute; left:8px; font-size:28px; top:160px; animation:float 2.1s infinite">🎈</div>
+      <div style="position:absolute; right:10px; font-size:31px; top:130px; animation:float 2.2s infinite">🎈</div>
+      <div style="position:absolute; right:2px; font-size:29px; top:200px; animation:float 2.4s infinite">🎈</div>
+
+      <div id="gameArea" style="position:relative; height:360px; width:290px; overflow:hidden; background:#E6F3FF; border:4px solid black; border-radius:4px">
+        <div style="position:absolute; left:20%; top:0; width:3px; height:100%; background:black"></div>
+        <div style="position:absolute; left:40%; top:0; width:3px; height:100%; background:black"></div>
+        <div style="position:absolute; left:60%; top:0; width:3px; height:100%; background:black"></div>
+        <div style="position:absolute; left:80%; top:0; width:3px; height:100%; background:black"></div>
+      </div>
+    </div>
+
+    <!-- CONTROL BOX -->
+    <div id="controlBox" style="border:4px solid black; display:inline-flex; align-items:center; padding:12px; border-radius:15px; background:#D3D3D3; margin:10px 0; position:relative; z-index:10; gap:10px">
+      <button onclick="toggleMusic()" id="musicBtn" style="padding:10px 12px; border:3px solid black; border-radius:50%; background:#87CEEB; font-size:18px">🔊</button>
+      <button onclick="movePlayer(-1)" style="padding:20px 24px; font-size:28px; border:4px solid black; background:white; border-radius:50%; font-weight:bold">←</button>
+      <button onclick="startGame()" style="padding:14px 18px; font-size:17px; border:3px solid black; background:#FFA500; color:white; border-radius:12px; font-weight:bold">Game<br>Start</button>
+      <button onclick="movePlayer(1)" style="padding:20px 24px; font-size:28px; border:4px solid black; background:white; border-radius:50%; font-weight:bold">→</button>
+    </div>
+
+    <!-- LEVEL COMPLETE POPUP -->
+    <div id="winPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:20; justify-content:center; align-items:center">
+      <div style="background:white; border:4px solid black; border-radius:20px; padding:20px; width:300px; position:relative; box-shadow:0 0 20px gold">
+        <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:30px">🎉🎊🎉</div>
+        <h1 style="color:#FF69B4; margin:5px 0; font-size:28px">You Win</h1>
+        <div style="position:absolute; right:20px; top:60px; font-size:40px">🎊</div>
+        <div style="text-align:left; margin:15px 0; font-size:18px; line-height:1.8">
+          Level : <span id="winLevel">1</span><br>
+          Score : <span id="winScore">0</span><br>
+          Coins : <span id="winCoins">0</span><br>
+          High Score : <span id="winHigh">0</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-top:15px">
+          <button onclick="restartLevel()" style="padding:10px 20px; border:3px solid black; border-radius:10px; background:#FFA500; font-size:16px; font-weight:bold">Restart</button>
+          <button onclick="nextLevel()" style="padding:10px 20px; border:3px solid black; border-radius:10px; background:#32CD32; color:white; font-size:16px; font-weight:bold">Next Level</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME OVER POPUP - PHOTO WALA -->
+    <div id="gameOverPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:20; justify-content:center; align-items:center">
+      <div style="background:white; border:4px solid black; border-radius:20px; padding:25px; width:280px; position:relative; box-shadow:0 0 20px red">
+        <h1 style="color:red; margin:5px 0; font-size:30px; border:2px solid black; border-radius:15px; padding:5px">Game Over</h1>
+        <div style="text-align:left; margin:20px 0; font-size:18px; line-height:2">
+          Level : <span id="overLevel">1</span><br>
+          Score : <span id="overScore">0</span><br>
+          Coins : <span id="overCoins">0</span><br>
+          High Score : <span id="overHigh">0</span>
+        </div>
+        <button onclick="restartGameOver()" style="padding:12px 30px; border:3px solid black; border-radius:15px; background:#FF4500; color:white; font-size:18px; font-weight:bold">Restart</button>
+      </div>
+    </div>
+
+<style>
+.bg-balloon {position:fixed; font-size:40px; bottom:-100px; animation: rise 15s linear infinite; opacity:0.3; z-index:0; pointer-events:none;}
+@keyframes rise {0% {transform:translateY(0) rotate(0deg)} 100% {transform:translateY(-120vh) rotate(360deg)}}
+.player {position:absolute; font-size:48px; bottom:8px; filter: drop-shadow(0 0 6px red);}
+.enemy {position:absolute; font-size:38px; filter: drop-shadow(0 0 5px red);}
+.coin {position:absolute; font-size:32px; filter: drop-shadow(0 0 8px gold); animation: spin 1s linear infinite;}
+@keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.explosion {position:absolute; font-size:65px; animation: boom 0.3s forwards;}
+@keyframes boom {0% {transform: scale(0.5); opacity:1} 100% {transform: scale(2); opacity:0}}
+</style>
+
+<script>
+let score = 0; let coins = 0; let playerLane = 2; let level = 1;
+let gameInterval; let enemyInterval; let coinInterval;
+let enemySpeed = 7; let spawnRate = 800;
+let highscore = localStorage.getItem("highscore") || 0;
+let audioCtx; let musicOn = true; let bgmInterval;
+let gameActive = false;
+
+const lanes = [8, 66, 124, 182, 240];
+const nukile = ["📍", "📌", "🔪", "✂️", "⚡", "💣", "💣"];
+
+function initSound(){if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();}
+function playPopSound(){initSound(); let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain(); osc.type = 'sine'; osc.frequency.setValueAtTime(800, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.2); gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2); osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.2);}
+function playCoinSound(){initSound(); let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain(); osc.frequency.value = 1200; gain.gain.value = 0.2; osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.1);}
+function playBGM(){if(!musicOn) return; initSound(); let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain(); osc.frequency.value = 440; gain.gain.value = 0.03; osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); setTimeout(()=>osc.stop(), 200);}
+function toggleMusic(){musicOn =!musicOn; document.getElementById("musicBtn").innerHTML = musicOn? "🔊" : "🔇"; if(musicOn) startBGM(); else clearInterval(bgmInterval);}
+function startBGM(){clearInterval(bgmInterval); bgmInterval = setInterval(playBGM, 500);}
+
+function startGame(){
+  initSound(); if(musicOn) startBGM();
+  score = 0; coins = 0; playerLane = 2; enemySpeed = 6 + level; spawnRate = 900 - (level * 100); if(spawnRate < 300) spawnRate = 300; gameActive = true;
+  updateStats(); document.getElementById("controlBox").style.display="inline-flex";
+  document.getElementById("gameArea").innerHTML = `<div style="position:absolute; left:20%; top:0; width:3px; height:100%; background:black"></div><div style="position:absolute; left:40%; top:0; width:3px; height:100%; background:black"></div><div style="position:absolute; left:60%; top:0; width:3px; height:100%; background:black"></div><div style="position:absolute; left:80%; top:0; width:3px; height:100%; background:black"></div>`;
+  createPlayer(); clearInterval(gameInterval); clearInterval(enemyInterval); clearInterval(coinInterval);
+  gameInterval = setInterval(moveItems, 40); enemyInterval = setInterval(createEnemy, spawnRate); coinInterval = setInterval(createCoin, 1200);
+}
+
+function updateStats(){
+  document.querySelectorAll("span")[0].innerHTML="Level - "+level;
+  document.querySelectorAll("span")[1].innerHTML="Score : "+score;
+  document.querySelectorAll("span")[2].innerHTML="High Score : "+highscore;
+  document.querySelectorAll("span")[3].innerHTML="Coins : "+coins;
+}
+
+function createPlayer(){let player = document.createElement("div"); player.id = "player"; player.innerHTML = "🎈"; player.className = "player"; player.style.left = lanes[playerLane] + "px"; document.getElementById("gameArea").appendChild(player);}
+function movePlayer(dir){if(!gameActive) return; playerLane += dir; if(playerLane < 0) playerLane = 0; if(playerLane > 4) playerLane = 4; document.getElementById("player").style.left = lanes[playerLane] + "px";}
+function createEnemy(){let enemy = document.createElement("div"); enemy.innerHTML = nukile[Math.floor(Math.random()*nukile.length)]; enemy.className = "enemy"; let lane = Math.floor(Math.random()*5); enemy.style.left = lanes[lane] + "px"; enemy.style.top = "-50px"; enemy.setAttribute("data-lane", lane); enemy.setAttribute("data-type", "enemy"); document.getElementById("gameArea").appendChild(enemy);}
+function createCoin(){let coin = document.createElement("div"); coin.innerHTML = "🪙"; coin.className = "coin"; let lane = Math.floor(Math.random()*5); coin.style.left = lanes[lane] + "px"; coin.style.top = "-40px"; coin.setAttribute("data-lane", lane); coin.setAttribute("data-type", "coin"); document.getElementById("gameArea").appendChild(coin);}
+function showExplosion(x){let exp = document.createElement("div"); exp.innerHTML = "💥🎈"; exp.className = "explosion"; exp.style.left = x + "px"; exp.style.bottom = "8px"; document.getElementById("gameArea").appendChild(exp); setTimeout(()=>exp.remove(), 300);}
+
+function moveItems(){
+  let items = document.querySelectorAll(".enemy,.coin"); let pLane = playerLane;
+  items.forEach(item => {
+    let top = parseInt(item.style.top) + enemySpeed; item.style.top = top + "px";
+    let itemLane = parseInt(item.getAttribute("data-lane")); let type = item.getAttribute("data-type");
+    if(top > 315 && top < 345 && itemLane == pLane){
+      if(type == "enemy"){
+        playPopSound();
+        showExplosion(lanes[pLane]);
+        gameOverPopup(); 
+      }
+      if(type == "coin"){playCoinSound(); coins++; updateStats(); item.remove();}
+    }
+    if(top > 360){
+      item.remove();
+      if(type == "enemy"){
+        score++; updateStats();
+        if(score >= level * 30){levelComplete();}
+      }
+    }
+  });
+}
+
+function levelComplete(){
+  gameActive = false;
+  clearInterval(gameInterval); clearInterval(enemyInterval); clearInterval(coinInterval); clearInterval(bgmInterval);
+  document.getElementById("controlBox").style.display="none";
+  if(score > highscore){highscore = score; localStorage.setItem("highscore", highscore);}
+  document.getElementById("winLevel").innerText = level;
+  document.getElementById("winScore").innerText = score;
+  document.getElementById("winCoins").innerText = coins;
+  document.getElementById("winHigh").innerText = highscore;
+  document.getElementById("winPopup").style.display="flex";
+}
+
+function gameOverPopup(){ 
+  gameActive = false;
+  clearInterval(gameInterval); clearInterval(enemyInterval); clearInterval(coinInterval); clearInterval(bgmInterval);
+  document.getElementById("controlBox").style.display="none";
+  if(score > highscore){highscore = score; localStorage.setItem("highscore", highscore);}
+  document.getElementById("overLevel").innerText = level;
+  document.getElementById("overScore").innerText = score;
+  document.getElementById("overCoins").innerText = coins;
+  document.getElementById("overHigh").innerText = highscore;
+  document.getElementById("gameOverPopup").style.display="flex";
+}
+
+function restartLevel(){
+  document.getElementById("winPopup").style.display="none";
+  startGame();
+}
+
+function restartGameOver(){ 
+  document.getElementById("gameOverPopup").style.display="none";
+  startGame();
+}
+
+function nextLevel(){
+  if(level < 5){
+    level++;
+    document.getElementById("winPopup").style.display="none";
+    startGame();
+  } else {
+    alert("Game Complete! 🏆 Aap Winner ho!");
+    document.getElementById("winPopup").style.display="none";
+  }
+}
+</script>
+  </body>
+            </html>      <div style="position:absolute; left:8px; font-size:28px; top:160px; animation:float 2.1s infinite">ðŸŽˆ</div>
       <div style="position:absolute; right:10px; font-size:31px; top:130px; animation:float 2.2s infinite">ðŸŽˆ</div>
       <div style="position:absolute; right:2px; font-size:29px; top:200px; animation:float 2.4s infinite">ðŸŽˆ</div>
 
